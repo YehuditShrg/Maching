@@ -1,4 +1,4 @@
-const machingsRepository  = require('../repositories/machingsRepository');
+const machingsRepository  = require('../repositories/campaignsRepository');
 
 class machingService {
 

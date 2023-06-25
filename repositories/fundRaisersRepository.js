@@ -1,11 +1,11 @@
-const { connect } = require('../models/dataBase');
+const { connect } = require('../models/db_connection');
 const { FundRaisers } = require('../models/FundRaiser');
 const logger = console;//require('../logger/api.logger');
 
 class fundRaisersRepository {
     
     constructor() {
-        connect();
+        // connect();
     }
 
     async getAllFundRaisers() {

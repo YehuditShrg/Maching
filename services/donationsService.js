@@ -9,6 +9,7 @@ class donationService {
     }
 
     async createDonation(donation) {
+        console.log("new donation:\n:"+donation);
         return await donationsRepository.createDonation(donation);
     }
 
@@ -16,7 +17,6 @@ class donationService {
         console.log(donationID);
         return await donationsRepository.deleteDonation(donationID);
     }
-
 }
 
 module.exports = new donationService();

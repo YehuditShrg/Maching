@@ -1,11 +1,11 @@
-const { connect } = require('../models/dataBase');
+const { connect } = require('../models/db_connection');
 const { Team } = require('../models/team');
 const logger = console;//require('../logger/api.logger');
 
 class teamsRepository {
     
     constructor() {
-        connect();
+        // connect();
     }
 
     async getAllTeams() {

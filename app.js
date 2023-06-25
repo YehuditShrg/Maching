@@ -1,31 +1,38 @@
+'use strict';
 const express = require('express')
+const { connect } = require('./models/db_connection');
 // const logger = require('./middlewares/logger');
 require('dotenv').config();
 const errorMW = require('./middlewares/error');
-
-const maching = require('./routes/machings');
+const server = express();
+const campaign = require('./routes/campaigns');
 const teams = require('./routes/teams');
 const fundRaisers = require('./routes/fundRaisers');
 
-const app = express();
+const hostname = process.env.HOSTNAME | '127.0.0.1'
+const port = process.env.PORT | 3000;
 
-//app.use(express.static('pages'));//127.0.0.1:3000/pages/mySwagger.html
+server.use(express.json());
 
-app.use(express.json());
+//server.use(logger('begin'));
 
-//app.use(logger('begin'));
-
-app.get('/', (req, res) => {
-    res.send('<h1>Some Headers</h1>')
+server.get('/', (req, res) => {
+    res.send('<h1>nodeJS project</h1>')
 })
 
-app.use('/api/maching', maching);
-app.use('/api/teams', teams);
-app.use('/api/fundRaiser', fundRaisers);
-app.use(errorMW);
+server.get('/maching', (req, res) => {
+    res.send('<br/><h2> M a c h i n g </h2><br/><h3>👩‍💻✨🤗<h3><br/><h4>by: Brachi Shkolnik & Yehudit Shraga<h4>')
+})
 
-//app.use(logger('end'));//will apply this middlware only if the response was not closed before
+server.use('/maching/campaign', campaign);
+server.use('/maching/teams', teams);
+server.use('/maching/fundRaiser', fundRaisers);
+server.use(errorMW);
 
-app.listen(3000, () => {
-    console.log('server is up and running')
+//server.use(logger('end'));//will apply this middlware only if the response was not closed before
+
+server.listen(port, hostname, () => {
+    console.log(' M a c h i n g  \n 👩‍💻 ✨ 🤗 \nby: Brachi Shkolnik & Yehudit Shraga');
+    console.log('maching server is up and running');
+    connect();
 })

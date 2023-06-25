@@ -1,11 +1,11 @@
-const { connect } = require('../models/dataBase');
+const { connect } = require('../models/db_connection');
 const { Donation } = require('../models/donation');
 const logger = console;//require('../logger/api.logger');
 
 class donationRepository {
 
     constructor() {
-        connect();
+        // connect();
     }
 
     async getAllDonations() {

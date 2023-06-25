@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const machingSchema = mongoose.Schema({
+const campaignSchema = mongoose.Schema({
     ID: {
         type: Number,
         required: true,
@@ -10,6 +10,6 @@ const machingSchema = mongoose.Schema({
     targetDate: { type: Date },
     gaol: { type: Number }
 })
-const Maching = new mongoose.model('maching', machingSchema);
+const Campaign = new mongoose.model('campaigns', campaignSchema);
 
-module.exports = { Maching };
+module.exports = { Campaign };
