@@ -2,32 +2,28 @@ const { connect } = require('../models/dataBase');
 const { Donation } = require('../models/donation');
 const logger = console;//require('../logger/api.logger');
 
-class teamsRepository {
-    
+class donationRepository {
+
     constructor() {
         connect();
     }
 
     async getAllDonations() {
-        const donations = await Donation.find({});
+        console.log("get donation");
+        const donations = await Donation.find();
         console.log('donations:::', donations);
         return donations;
     }
 
     async createDonation(donation) {
+        console.log("creat donation");
         let data = {};
+        console.log(donation);
         try {
             data = await Donation.create(donation);
-        } catch (err) {
-            logger.error('Error::' + err);
-        }
-        return data;
-    }
+            console.log("creat donation1");
+            console.log(data);
 
-    async updateDonation(donation) {
-        let data = {};
-        try {
-            data = await Donation.updateOne(donation);
         } catch (err) {
             logger.error('Error::' + err);
         }
@@ -36,6 +32,7 @@ class teamsRepository {
 
     async deleteDonation(donationID) {
         let data = {};
+        console.log(donationID);
         try {
             data = await Donation.deleteOne({ ID: donationID });
         } catch (err) {
@@ -46,4 +43,4 @@ class teamsRepository {
 
 }
 
-module.exports = new teamsRepository();
+module.exports = new donationRepository();

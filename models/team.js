@@ -1,21 +1,15 @@
 
 const mongoose = require('mongoose');
 
-//return null
-const Schema = mongoose.Schema;
-const teamsSchema =  new Schema({
-    ID:{
+const teamsSchema = mongoose.Schema({
+    ID: {
         type: Number,
         required: true,
-        unique : true
-    }, 
-    goal: {
-        type: Number
-    }, 
-    name:{
-        type: String
-    }
+        unique: true
+    },
+    goal: { type: Number },
+    name: { type: String }
 })
-const Team = mongoose.model('Teams', teamsSchema);
+const Team = new mongoose.model('teams', teamsSchema);
 
 module.exports = { Team };

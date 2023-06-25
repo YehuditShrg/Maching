@@ -1,5 +1,5 @@
 const { connect } = require('../models/dataBase');
-const { FundRaisers } = require('../models/fundRaiser');
+const { FundRaisers } = require('../models/FundRaiser');
 const logger = console;//require('../logger/api.logger');
 
 class fundRaisersRepository {
@@ -9,7 +9,7 @@ class fundRaisersRepository {
     }
 
     async getAllFundRaisers() {
-        const fundRaisers = await FundRaisers.find({});
+        const fundRaisers = await FundRaisers.find();
         console.log('fund raisers:::', fundRaisers);
         return fundRaisers;
     }

@@ -1,8 +1,8 @@
 const express = require('express');
 const teamService = require('../services/teamService');
 const router = express.Router();
-
-const fundRaisers = require('./routes/fundRaisers');
+const errorMW = require('../middlewares/error');
+// const fundRaisers = require('./routes/fundRaisers');
 
 
 router.get('/', async (req, res) => {
@@ -25,8 +25,7 @@ router.delete('/delete/:teamID', async (req, res) => {
     res.send(await teamService.deleteTeam(req.params.teamID));
 });
 
-
-router.use('/:id/fundRaiser', fundRaisers);
-
+router.use(errorMW);
+// router.use('/:id/fundRaiser', fundRaisers);
 
 module.exports = router;

@@ -4,19 +4,15 @@ const router = express.Router();
 const errorMW = require('../middlewares/error');
 
 router.get('/', async (req, res) => {
-    res.send(await donationsService.getAllDonaions());
+    res.send(await donationsService.getAllDonations());
 });
 
-router.post('/creat', async (req, res) => {
-    res.send(await donationsService.createDonaion(req.params));
+router.post('/create', async (req, res) => {
+    res.send(await donationsService.createDonation(req.body));
 });
 
-router.put('/update', async (req, res) => {
-    res.send(await donationsService.updateDonaion(req.params));
-});
-
-router.delete('/delete/:donationID', async (req, res) => {
-    res.send(await donationsService.deleteDonaion(req.params.donationID));
+router.delete('/delete', async (req, res) => {
+   res.send(await donationsService.deleteDonation(req.query.donationID));
 });
 
 router.use(errorMW);

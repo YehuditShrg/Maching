@@ -1,11 +1,11 @@
 const express = require('express')
 // const logger = require('./middlewares/logger');
 require('dotenv').config();
+const errorMW = require('./middlewares/error');
 
 const maching = require('./routes/machings');
 const teams = require('./routes/teams');
 const fundRaisers = require('./routes/fundRaisers');
-const donations = require('./routes/donations');
 
 const app = express();
 
@@ -19,17 +19,12 @@ app.get('/', (req, res) => {
     res.send('<h1>Some Headers</h1>')
 })
 
-
 app.use('/api/maching', maching);
-app.use('/api/team', teams);
+app.use('/api/teams', teams);
 app.use('/api/fundRaiser', fundRaisers);
-// app.use('/api/donation', donations);
+app.use(errorMW);
 
 //app.use(logger('end'));//will apply this middlware only if the response was not closed before
-
-
-
-
 
 app.listen(3000, () => {
     console.log('server is up and running')

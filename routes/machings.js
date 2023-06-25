@@ -1,14 +1,14 @@
-const express = remachingIDquire('express');
+const express = require('express');
 const machingService = require('../services/machingService');
 const router = express.Router();
-
-const teams = require('./routes/teams');
-const fundRaisers = require('./routes/fundRaisers');
+const errorMW = require('../middlewares/error');
+const teams = require('./teams');
+const fundRaisers = require('./fundRaisers');
 
 
 
 router.get('/', async (req, res) => {
-    res.send(await machingService.getAllTeams());
+    res.send(await machingService.getAllMachings());
 });
 
 router.get('/:machingID', async (req, res) => {
@@ -27,9 +27,7 @@ router.delete('/delete/:machingID', async (req, res) => {
     res.send(await machingService.deleteMaching(req.params.machingID));
 });
 
-router.use('/:id/team', teams);
+router.use('/:id/teams', teams);
 router.use('/:id/fundRaiser', fundRaisers);
-
-
-
+router.use(errorMW);
 module.exports = router;

@@ -1,25 +1,16 @@
 const mongoose = require('mongoose');
 
 const donationSchema = mongoose.Schema({
-    ID:{
+    ID: {
         type: Number,
         required: true,
-        unique : true
-    }, 
-    amount:{
-        type: Number
-    }, 
-    fundRaiserID: {
-        type: Number
-    }, 
-    date:{
-        type: Date
+        unique: true
     },
-    donor:{
-        type: String
-    }
-        
+    amount: { type: Number },
+    fundRaiserID: { type: Number },
+    date: { type: Date },
+    donor: { type: String }
 })
-const Donation = new mongoose.model('Donations', donationSchema);
+const Donation = new mongoose.model('donation', donationSchema);
 
 module.exports = { Donation };

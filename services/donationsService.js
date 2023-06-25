@@ -12,11 +12,8 @@ class donationService {
         return await donationsRepository.createDonation(donation);
     }
 
-    async updateDonation(donation) {
-        return await donationsRepository.updateDonation(donation);
-    }
-
     async deleteDonation(donationID) {
+        console.log(donationID);
         return await donationsRepository.deleteDonation(donationID);
     }
 

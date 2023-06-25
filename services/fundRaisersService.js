@@ -8,7 +8,7 @@ class fundRaisersService {
         return await fundRaisersRepository.getAllFundRaisers();
     }
 
-    async getFundRaiser(fundRaiserID) {
+    async getByID(fundRaiserID) {
         return await fundRaisersRepository.getByID(fundRaiserID);
     }
 
