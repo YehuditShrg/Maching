@@ -1,5 +1,5 @@
 const express = require('express');
-const machingService = require('../services/machingService');
+const campaignService = require('../services/campaignService');
 const router = express.Router();
 const errorMW = require('../middlewares/error');
 const teams = require('./teams');
@@ -8,23 +8,23 @@ const fundRaisers = require('./fundRaisers');
 
 
 router.get('/', async (req, res) => {
-    res.send(await machingService.getAllMachings());
+    res.send(await campaignService.getAllCampaigns());
 });
 
 router.get('/:machingID', async (req, res) => {
-    res.send(await machingService.getByID(req.params.machingID));
+    res.send(await campaignService.getByID(req.query.machingID));
 });
 
 router.post('/creat', async (req, res) => {
-    res.send(await machingService.createMaching(req.params));
+    res.send(await campaignService.createCampaign(req.params));
 });
 
 router.put('/update', async (req, res) => {
-    res.send(await machingService.updateMaching(req.params));
+    res.send(await campaignService.updateCampaign(req.params));
 });
 
 router.delete('/delete/:machingID', async (req, res) => {
-    res.send(await machingService.deleteMaching(req.params.machingID));
+    res.send(await campaignService.deleteCampaign(req.params.machingID));
 });
 
 router.use('/:id/teams', teams);

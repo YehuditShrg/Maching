@@ -14,36 +14,37 @@ class CampaignRepository {
         return campaigns;
     }
 
-    async getByID(CampaignID) {
-        const Campaign = await Campaign.findOne({ ID: CampaignID });
-        console.log('Campaigns:::', Campaign);
-        return Campaign;
+    async getByID(campaignID) {
+        console.log(campaignID);
+        const campaign = await Campaign.findOne({ ID: campaignID });
+        console.log('Campaigns:::', campaign);
+        return campaign;
     }
 
-    async createCampaign(Campaign) {
+    async createCampaign(campaign) {
         let data = {};
         try {
-            data = await Campaign.create(Campaign);
+            data = await Campaign.create(campaign);
         } catch (err) {
             logger.error('Error::' + err);
         }
         return data;
     }
 
-    async updateCampaign(Campaign) {
+    async updateCampaign(campaign) {
         let data = {};
         try {
-            data = await Campaign.updateOne(Campaign);
+            data = await Campaign.updateOne(campaign);
         } catch (err) {
             logger.error('Error::' + err);
         }
         return data;
     }
 
-    async deleteCampaign(CampaignID) {
+    async deleteCampaign(campaignID) {
         let data = {};
         try {
-            data = await Campaign.deleteOne({ ID: CampaignID });
+            data = await Campaign.deleteOne({ ID: campaignID });
         } catch (err) {
             logger.error('Error::' + err);
         }
