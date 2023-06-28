@@ -8,7 +8,7 @@ const campaignSchema = mongoose.Schema({
     },
     name: { type: String },
     targetDate: { type: Date },
-    gaol: { type: Number }
+    goal: { type: Number }
 })
 const Campaign = new mongoose.model('campaigns', campaignSchema);
 

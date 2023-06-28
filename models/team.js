@@ -8,7 +8,11 @@ const teamsSchema = mongoose.Schema({
         unique: true
     },
     goal: { type: Number },
-    name: { type: String }
+    name: { type: String },
+    campaignID: {
+        type: Number,
+        required: true
+    }
 })
 const Team = new mongoose.model('teams', teamsSchema);
 

@@ -8,7 +8,10 @@ const donationSchema = mongoose.Schema({
     },
     amount: { type: Number },
     fundRaiserID: { type: Number },
-    date: { type: Date },
+    date: {
+        type: Date,
+        default: Date.now()
+    },
     donor: { type: String }
 })
 const Donation = new mongoose.model('donation', donationSchema);

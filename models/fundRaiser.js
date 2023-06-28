@@ -8,8 +8,7 @@ const fundRaiserSchema = mongoose.Schema({
     },
     name: { type: String },
     teamID: { type: Number },
-    gaol: { type: Number },
-    // achievement:{type: Number},
+    goal: { type: Number },
     admin: { type: Boolean }
 })
 const FundRaiser = new mongoose.model('fundraisers', fundRaiserSchema);

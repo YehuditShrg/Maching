@@ -1,4 +1,6 @@
+const fundRaisersRepository = require('../repositories/fundRaisersRepository');
 const teamRepository  = require('../repositories/teamsRepository');
+const campaignService = require('./campaignService');
 
 class teamService {
 
@@ -8,7 +10,7 @@ class teamService {
         return await teamRepository.getAllTeams();
     }
 
-    async getTeam(teamID) {
+    async getByID(teamID) {
         return await teamRepository.getByID(teamID);
     }
 
@@ -22,6 +24,19 @@ class teamService {
 
     async deleteTeam(teamID) {
         return await teamRepository.deleteTeam(teamID);
+    }
+
+    async getTeams(campaignID){
+        let isnum = /^\d+$/.test(campaignID);
+        if (isnum === false){
+            const campaign =  await campaignService.getSingle(campaignID)
+            campaignID = campaign.ID
+        }
+        return await teamRepository.getTeamsByCampaignID(campaignID);
+    }
+
+    async getFundraisers(){
+        return await fundRaisersRepository.geta(campaignID);
     }
 
 }

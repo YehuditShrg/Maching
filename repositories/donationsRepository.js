@@ -1,16 +1,19 @@
-const { connect } = require('../models/db_connection');
 const { Donation } = require('../models/donation');
-const logger = console;//require('../logger/api.logger');
+const logger = console;
 
 class donationRepository {
 
     constructor() {
-        // connect();
     }
 
     async getAllDonations() {
-        console.log("get donation");
         const donations = await Donation.find();
+        console.log('donations:::', donations);
+        return donations;
+    }
+
+    async getDonations(fundRaiserID) {
+        const donations = await Donation.find({fundRaiserID: fundRaiserID});
         console.log('donations:::', donations);
         return donations;
     }

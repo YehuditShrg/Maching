@@ -9,7 +9,6 @@ async function connect() {
         console.log('connected successfully');
     }
     catch {
-        // console.log(err);
        console.log('🏳 קרתה תקלה בלתי צפויה בחיבור לרשת. \n אנא נסו שנית בעוד מספר רגעים.');
     }
 }

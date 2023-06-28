@@ -1,11 +1,9 @@
-const { connect } = require('../models/db_connection');
 const { Campaign } = require('../models/campaign');
-const logger = console;//require('../logger/api.logger');
+const logger = console;
 
 class CampaignRepository {
-    
+
     constructor() {
-        // connect();
     }
 
     async getAllCampaigns() {
@@ -20,7 +18,12 @@ class CampaignRepository {
         console.log('Campaigns:::', campaign);
         return campaign;
     }
-
+    async getByName(campaignID) {
+        console.log(campaignID);
+        const campaign = await Campaign.findOne({ name: campaignID });
+        console.log('Campaigns:::', campaign);
+        return campaign;
+    }
     async createCampaign(campaign) {
         let data = {};
         try {
@@ -31,14 +34,19 @@ class CampaignRepository {
         return data;
     }
 
-    async updateCampaign(campaign) {
+    async updateCampaign(id, sum) {
         let data = {};
+        let filter = { ID: id };
+        let isSuccess = false
         try {
-            data = await Campaign.updateOne(campaign);
+            data = await Campaign.findOne(filter);
+            data.goal = sum;
+            await Campaign.updateOne(filter, data)
+            isSuccess = true
         } catch (err) {
             logger.error('Error::' + err);
         }
-        return data;
+        return isSuccess;
     }
 
     async deleteCampaign(campaignID) {
@@ -50,7 +58,6 @@ class CampaignRepository {
         }
         return { status: `${data.deletedCount > 0 ? true : false}` };
     }
-
 }
 
 module.exports = new CampaignRepository();

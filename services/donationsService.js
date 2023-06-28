@@ -9,13 +9,17 @@ class donationService {
     }
 
     async createDonation(donation) {
-        console.log("new donation:\n:"+donation);
+        console.log("new donation: "+donation.amount);
         return await donationsRepository.createDonation(donation);
     }
 
     async deleteDonation(donationID) {
         console.log(donationID);
         return await donationsRepository.deleteDonation(donationID);
+    }
+
+    async getDonations(fundRaiserID) {
+        return await donationsRepository.getDonations(fundRaiserID);
     }
 }
 

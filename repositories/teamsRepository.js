@@ -1,15 +1,19 @@
-const { connect } = require('../models/db_connection');
 const { Team } = require('../models/team');
-const logger = console;//require('../logger/api.logger');
+const logger = console;
 
 class teamsRepository {
     
     constructor() {
-        // connect();
     }
 
     async getAllTeams() {
         const teams = await Team.find({});
+        console.log('teams:::', teams);
+        return teams;
+    }
+
+    async getTeamsByCampaignID(campID) {
+        const teams = await Team.find({ campaignID: campID });
         console.log('teams:::', teams);
         return teams;
     }
@@ -33,22 +37,22 @@ class teamsRepository {
     async updateTeam(team) {
         let data = {};
         try {
-            data = await Team.updateOne(team);
+            // data = await Team.updateOne(team);
         } catch (err) {
             logger.error('Error::' + err);
         }
         return data;
     }
 
-    async deleteTeam(teamID) {
-        let data = {};
-        try {
-            data = await Team.deleteOne({ ID: teamID });
-        } catch (err) {
-            logger.error('Error::' + err);
-        }
-        return { status: `${data.deletedCount > 0 ? true : false}` };
-    }
+    // async deleteTeam(teamID) {
+    //     let data = {};
+    //     try {
+    //         data = await Team.deleteOne({ ID: teamID });
+    //     } catch (err) {
+    //         logger.error('Error::' + err);
+    //     }
+    //     return { status: `${data.deletedCount > 0 ? true : false}` };
+    // }
 
 }
 

@@ -1,33 +1,35 @@
 const express = require('express');
 const campaignService = require('../services/campaignService');
+const teamsService = require('../services/teamService');
 const router = express.Router();
 const errorMW = require('../middlewares/error');
-const teams = require('./teams');
-const fundRaisers = require('./fundRaisers');
-
-
 
 router.get('/', async (req, res) => {
     res.send(await campaignService.getAllCampaigns());
 });
 
 router.get('/:machingID', async (req, res) => {
-    res.send(await campaignService.getByID(req.query.machingID));
+    console.log(req.params);
+    res.send(await campaignService.getSingle(req.params.machingID));
 });
 
-router.post('/creat', async (req, res) => {
+router.post('/create', async (req, res) => {
     res.send(await campaignService.createCampaign(req.params));
 });
 
-router.put('/update', async (req, res) => {
-    res.send(await campaignService.updateCampaign(req.params));
+// router.delete('/delete/:machingID', async (req, res) => {
+//     res.send(await campaignService.deleteCampaign(req.params.machingID));
+// });
+
+router.get('/:machingID/teams', async (req, res) => {
+    console.log(req.params.machingID);
+    res.send(await teamsService.getTeams(req.params.machingID));
 });
 
-router.delete('/delete/:machingID', async (req, res) => {
-    res.send(await campaignService.deleteCampaign(req.params.machingID));
+router.get('/:campaignID/getAchivment', async (req, res) => {
+    console.log(req.params.campaignID);
+    res.send(await campaignService.getAchivment(req.params.campaignID));
 });
 
-router.use('/:id/teams', teams);
-router.use('/:id/fundRaiser', fundRaisers);
 router.use(errorMW);
 module.exports = router;
